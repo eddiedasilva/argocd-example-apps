@@ -1,17 +1,18 @@
-kind: Ingress
 apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: guestbook-ui
   namespace: guestbook
-  annotations:
-    
+  
 spec:
   ingressClassName: nginx
   rules:
-    - host: guestbook.gitops.local
-      http:
-        paths:
-          - path: /
-            backend:
-              serviceName: guestbook-ui
-              servicePort: 80
+  - host: guestbook.kc-cloud.com
+    http:
+      paths:
+      - backend:
+          service:
+            name: guestbook-ui
+            port:
+              number: 80
+        pathType: ImplementationSpecific
